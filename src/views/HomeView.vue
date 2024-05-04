@@ -36,13 +36,13 @@ onMounted(async () => {
     </Form>
 
     <div
-      class="bg-stone-100 border border-stone-200 rounded mx-auto p-4"
+      class="bg-stone-100 border border-stone-200 rounded mx-auto p-4 max-w-full"
       v-if="urlStore.currentUrl && !currentUser"
     >
       <h1 class="text-stone-800 font-bold">{{ urlStore.currentUrl.longUrl }}</h1>
       <RouterLink
         :to="{ name: 'redirect', params: { nanoid: urlStore.currentUrl.shortUrl } }"
-        class="text-stone-600 underline underline-offset-4"
+        class="text-stone-600 underline underline-offset-4 break-all"
       >
         {{ URI + '/redirect/' + urlStore.currentUrl.shortUrl }}
       </RouterLink>
