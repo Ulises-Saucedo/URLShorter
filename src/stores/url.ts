@@ -43,7 +43,7 @@ export const useUrlStore = defineStore('url', () => {
   }
 
   const createShorterUrl = async (longUrl: string) => {
-    const owner = user.value.uid ? user.value.uid : null
+    const owner = user.value ? user.value.uid : null
 
     try {
       const docRef = await addDoc(collection(db, 'trimmer'), {
