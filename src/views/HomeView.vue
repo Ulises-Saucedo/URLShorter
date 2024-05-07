@@ -4,11 +4,12 @@ import { getCurrentUser } from 'vuefire'
 import { Form } from 'vee-validate'
 import { urlSchema } from '@/schemas/urlshorterSchema'
 import { useUrlStore } from '@/stores/url'
-import PaginationComponent from '@/components/PaginationComponent.vue'
+import { useOffsetPagination } from '@vueuse/core'
 import InputText from '@/components/InputText.vue'
 
 const currentUser = ref()
-const page = ref(1)
+const page = ref<any>(1)
+const totalPages = ref(0)
 const urlStore = useUrlStore()
 const URI = import.meta.env.VITE_FRONTEND_URL
 
@@ -16,16 +17,27 @@ const onSubmit = ({ longUrl }: any) => {
   urlStore.createShorterUrl(longUrl)
 }
 
-const onPageChange = (pageRecover: any) => {
-  page.value = pageRecover
+const fetchData = async ({ currentPage }: { currentPage: number }) => {
+  page.value = currentPage
 }
 
 onMounted(async () => {
   currentUser.value = await getCurrentUser()
 
   if (currentUser.value) {
-    urlStore.getOwnerUrls()
+    await urlStore.getOwnerUrls()
   }
+
+  const { pageCount } = useOffsetPagination({
+    total: urlStore.urls.length,
+    page: 1,
+    pageSize: 6,
+    onPageChange: fetchData
+  })
+
+  totalPages.value = pageCount.value
+
+  await fetchData({ currentPage: page.value })
 })
 </script>
 
@@ -69,14 +81,15 @@ onMounted(async () => {
       </section>
 
       <section class="space-x-2 flex justify-center">
-        <PaginationComponent
-          :maxVisibleButtons="2"
-          :totalPages="urlStore.urls.length"
-          :perPage="6"
-          :currentPage="page"
-          @pagechanged="onPageChange"
-          v-if="urlStore.urls.length > 6"
-        />
+        <button
+          v-for="item in totalPages"
+          :key="item"
+          :disabled="page === item"
+          @click="page = item"
+          class="bg-stone-100 border border-stone-200 py-1 px-3 rounded"
+        >
+          {{ item }}
+        </button>
       </section>
     </section>
   </main>
