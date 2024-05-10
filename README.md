@@ -1,4 +1,4 @@
-## URLShorter
+## URLShorter 📎
 Set environment variables with your firebase configuration and your frontend domain:
 ```
 VITE_FRONTEND_URL=XXXXXXXXXXXXXXXXX
