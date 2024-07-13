@@ -18,5 +18,6 @@ router.put(
   user.updateAccount
 );
 router.delete("/remove", auth, user.deleteAccount);
+router.get("/verify", auth, user.verify);
 
 export default router;

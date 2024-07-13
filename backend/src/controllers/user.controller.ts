@@ -139,3 +139,26 @@ export const deleteAccount = async (
       .json({ status: 500, message: "Error al eliminar el usuario" });
   }
 };
+
+export const verify = async (
+  req: AuthRequest,
+  res: Response
+): Promise<Response> => {
+  const user = req.user;
+
+  const userFound = await User.findById(user?.id);
+  if (!userFound)
+    return res.status(404).json({
+      status: 404,
+      message: "No se encontró el usuario",
+    });
+
+  return res.json({
+    status: 200,
+    user: {
+      id: userFound?._id.toString(),
+      name: userFound?.name,
+      email: userFound?.email,
+    },
+  });
+};
