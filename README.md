@@ -7,6 +7,7 @@ La aplicación completa permite a los usuarios acortar URLs largas en enlaces m�
 - [Frontend](https://github.com/Ulises-Saucedo/URLShorter/frontend)
 - [Backend](https://github.com/Ulises-Saucedo/URLShorter/backend)
 
+## Tecnologías utlizadas
 - **Frontend:**
   - Vue.js
   - TypeScript
@@ -16,6 +17,7 @@ La aplicación completa permite a los usuarios acortar URLs largas en enlaces m�
   - Node.js
   - Express
   - MongoDB
+  - Typescript
 
 ## Instalación
 Sigue las instrucciones en los respectivos repositorios para configurar el frontend y el backend.
