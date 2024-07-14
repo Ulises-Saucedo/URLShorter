@@ -1,39 +1,46 @@
 # URLShorter
 
-This template should help get you started developing with Vue 3 in Vite.
+## Descripción
+Esta es el frontend del acortador de URLs. Está construido Vue.js, Typescript y pnpm como gestor de paquetes.
 
-## Recommended IDE Setup
+## Requisitos
+-  [NodeJS](https://nodejs.org/en)
+-  [pnpm](https://pnpm.io/es/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+## Instalación
+1. Clona el repositorio a tu máquina local:
+    ```sh
+    git clone https://github.com/Ulises-Saucedo/URLShorter.git
+    ```
+2. Instalar las dependencias necesarias:
+    ```sh
+    cd frontend && pnpm install
+    ```
+3. Configuración (si cambió el puerto escuchado por express):
+   ```sh
+    cd frontend/src/api y cambiar baseUrl dentro del objeto de axios
+   ```
+   
+## Comandos 🕹
+1. Desarrollo:
+   ```sh
+    pnpm dev
+   ```
+2. Construcción:
+   ```sh
+    pnpm build
+   ```
+3. Producción:
+   ```sh
+    pnpm start
+   ```
+4. Linter:
+   ```sh
+    pnpm lint
+    ```
+   
+## Enlaces útiles
+-  [Vue.js](https://vuejs.org/)
+-  [Typescript](https://www.typescriptlang.org/)
+-  [NodeJS](https://nodejs.org/en)
+-  [pnpm](https://pnpm.io/es/)
