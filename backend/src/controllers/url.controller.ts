@@ -126,11 +126,11 @@ export const remove = async (
   res: Response
 ): Promise<Response> => {
   const user = req.user;
-  const { shortURL } = req.params;
+  const { shortUrl } = req.params;
 
   try {
     const url = await Url.findOneAndDelete({
-      shortURL: shortURL,
+      shortURL: shortUrl,
       user: user?.id,
     });
     if (!url)
