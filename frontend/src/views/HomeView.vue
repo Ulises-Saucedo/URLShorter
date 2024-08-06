@@ -12,7 +12,7 @@ import UrlCard from '@/components/UrlCard.vue'
 const storeUser = userStore()
 const { user } = storeToRefs(storeUser)
 const storeUrl = urlStore()
-const { urlTtl, urls, total } = storeToRefs(storeUrl)
+const { urlTtl, noAuthLimit, urls, total } = storeToRefs(storeUrl)
 const { createShortUrl, recoverUserUrls, pagination } = storeUrl
 
 const isPossiblePaginate = computed(() => total.value > 10)
@@ -29,6 +29,19 @@ const onSubmit = handleSubmit(async ({ url }: { url: string }): Promise<void> =>
 
 onMounted(async () => {
   await recoverUserUrls()
+
+  // Comprobar si el link ha expirado
+  if (urlTtl.value && Date.now() > urlTtl.value.exp) {
+    urlTtl.value = null
+    noAuthLimit.value = 0
+  } else if (urlTtl.value) {
+    const timeLeft = urlTtl.value.exp - Date.now()
+
+    setTimeout(() => {
+      urlTtl.value = null
+      noAuthLimit.value = 0
+    }, timeLeft)
+  }
 })
 </script>
 

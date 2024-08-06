@@ -12,7 +12,7 @@ export const urlStore = defineStore(
     const storeUser = userStore()
     const { token } = storeToRefs(storeUser)
     const urls: Ref<UrlFromDB[]> = ref([])
-    const urlTtl: Ref<Url | null> = ref(null)
+    const urlTtl: Ref<any | null> = ref(null)
     const noAuthLimit: Ref<number> = ref(0)
     const total: Ref<number> = ref(0)
 
@@ -26,7 +26,10 @@ export const urlStore = defineStore(
           const {
             data: { url: urlResponse }
           }: { data: { url: Url } } = await Service.createShortUrlTtl(url)
-          urlTtl.value = urlResponse
+          urlTtl.value = {
+            ...urlResponse,
+            exp: Date.now() + 5 * 60 * 1000 // 5 minutos
+          }
 
           noAuthLimit.value = 1
 
@@ -90,6 +93,7 @@ export const urlStore = defineStore(
     return {
       urls,
       urlTtl,
+      noAuthLimit,
       total,
       createShortUrl,
       recoverUserUrls,
