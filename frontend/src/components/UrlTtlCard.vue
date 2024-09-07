@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Url } from '@/ts/types/url.types'
 
+const API_URL = 'https://urlshorter-31n1.onrender.com'
+
 defineProps({
   urlTtl: {
     type: Object as () => Url,
@@ -15,7 +17,7 @@ defineProps({
       <div class="card-body">
         <div class="card-title">En 5 minutos su link será eliminado</div>
         <div class="card-text">
-          <a :href="`http://localhost:3000/api/url/redirect/${urlTtl.shortURL}`">
+          <a :href="`${API_URL}/api/url/redirect/${urlTtl.shortURL}`">
             {{ urlTtl.originalURL }}
           </a>
         </div>

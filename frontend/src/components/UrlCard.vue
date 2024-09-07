@@ -3,6 +3,7 @@ import { urlStore } from '@/stores/url.store'
 import type { UrlFromDB } from '@/ts/types/url.types'
 
 const { removeUrl } = urlStore()
+const API_URL = 'https://urlshorter-31n1.onrender.com'
 
 defineProps({
   url: {
@@ -17,7 +18,7 @@ defineProps({
     <div class="card bg-success-subtle">
       <div class="card-body">
         <div class="card-text">
-          <a :href="`http://localhost:3000/api/url/redirect/${url.shortURL}`">
+          <a :href="`${API_URL}/api/url/redirect/${url.shortURL}`">
             {{ url.shortURL }}
           </a>
           <div class="row">
