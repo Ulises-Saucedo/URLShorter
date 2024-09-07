@@ -9,9 +9,20 @@ import { connectionToDatabase } from "./src/database/db";
 })();
 
 const PORT: number = parseInt(process.env.PORT || "3000", 10);
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",").map((origin) => origin) || "";
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.use(express.json());
 
 app.use("/api/user", routes.user);
