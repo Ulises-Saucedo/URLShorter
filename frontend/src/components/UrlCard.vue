@@ -6,7 +6,7 @@ const { removeUrl } = urlStore()
 
 defineProps({
   url: {
-    type: Object as UrlFromDB,
+    type: Object as () => UrlFromDB,
     required: true
   }
 })

@@ -3,7 +3,7 @@ import { useField } from 'vee-validate'
 
 const props = defineProps({
   type: {
-    type: String as () => InputType | any,
+    type: String,
     default: 'text'
   },
   id: {

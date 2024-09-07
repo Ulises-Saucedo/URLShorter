@@ -11,11 +11,10 @@ const { handleSubmit } = useForm({
   validationSchema: loginSchema
 })
 
-const onSubmit = handleSubmit(
-  async ({ email, password }: { email: string; password: string }): Promise<void> => {
-    await login({ name, email, password })
-  }
-)
+const onSubmit = handleSubmit(async (values): Promise<void> => {
+  const { email, password } = values
+  await login({ email, password })
+})
 </script>
 
 <template>

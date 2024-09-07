@@ -3,7 +3,7 @@ import type { Url } from '@/ts/types/url.types'
 
 defineProps({
   urlTtl: {
-    type: Object as Url,
+    type: Object as () => Url,
     required: true
   }
 })

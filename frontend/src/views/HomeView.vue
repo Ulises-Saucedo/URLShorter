@@ -22,7 +22,8 @@ const { handleSubmit, resetForm } = useForm({
   validationSchema: urlSchema
 })
 
-const onSubmit = handleSubmit(async ({ url }: { url: string }): Promise<void> => {
+const onSubmit = handleSubmit(async (values): Promise<void> => {
+  const { url } = values
   await createShortUrl(url)
   resetForm()
 })
